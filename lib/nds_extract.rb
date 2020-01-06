@@ -106,14 +106,13 @@ def movies_with_directors_set(source)
   index = 0 
   new_array = []
   while index < source.length do 
-    movies_with_director_names(source[index], source[index][:movies])
-    director_name = source[index]
-    index2 = 0 
-    while index2 < source[index][:movies].length do 
-      movie_name = source[index][:movies][index2][:title]
-      new_array << movies_with_director_key(director_name, movie_name)
-      index2 += 1 
-    end 
+    new_array<< movies_with_director_key(source[index], source[index][:movies])
+    # director_name = source[index]
+    # index2 = 0 
+    # while index2 < source[index][:movies].length do 
+    #   movie_name = source[index][:movies][index2][:title]
+      
+    puts new_array
     index +=1 
   end
   new_array

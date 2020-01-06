@@ -30,6 +30,7 @@ def movie_with_director_name(director_name, movie_data)
   }
 end
 
+#puts movie_with_director_name("Byron Poodle", directors_database)
 
 # Your code after this point
 
@@ -48,8 +49,17 @@ def movies_with_director_key(name, movies_collection)
   # Array of Hashes where each Hash represents a movie; however, they should all have a
   # :director_name key. This addition can be done by using the provided
   # movie_with_director_name method
+  
+  updated_movies = [] 
+  row_index = 0 
+  while row_index < movies_collection.length do 
+    updated_movies << movie_with_director_name(name, movies_collection[row_index])
+    row_index +=1 
+  end
+  updated_movies
 end
 
+# puts directors_database[0][:movies]
 
 def gross_per_studio(collection)
   # GOAL: Given an Array of Hashes where each Hash represents a movie,
@@ -63,7 +73,24 @@ def gross_per_studio(collection)
   #
   # Hash whose keys are the studio names and whose values are the sum
   # total of all the worldwide_gross numbers for every movie in the input Hash
+  
+  studio_gross = {} 
+  i = 0 
+  total = 0 
+  while i < collection.length do 
+    studio_name = collection[i][:studio]
+    gross = collection[i][:worldwide_gross]
+    if !studio_gross[studio_name]
+      studio_gross[studio_name] = gross 
+    else 
+      studio_gross[studio_name] += gross 
+    end 
+    i += 1 
+  end
+  studio_gross
 end
+
+#puts directors_database[0][:movies][0][:studio]
 
 def movies_with_directors_set(source)
   # GOAL: For each director, find their :movies Array and stick it in a new Array
@@ -76,6 +103,15 @@ def movies_with_directors_set(source)
   #
   # Array of Arrays containing all of a director's movies. Each movie will need
   # to have a :director_name key added to it.
+  index = 0 
+  new_array = []
+  while index < source.length do 
+    movie_info = movies_with_director_key(index[:name], index[:movies])
+    new_array << movie_info
+    index += 1 
+    puts new_array
+  end 
+  new_array
 end
 
 # ----------------    End of Your Code Region --------------------

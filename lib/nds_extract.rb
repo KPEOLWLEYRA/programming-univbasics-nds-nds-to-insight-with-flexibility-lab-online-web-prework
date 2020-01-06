@@ -108,6 +108,7 @@ def movies_with_directors_set(source)
   while index < source.length do 
     movie_info = movies_with_director_key(source[index], source[index][:movies])
     new_array << movie_info 
+    puts new_array
     index +=1 
   end
   new_array
